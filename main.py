@@ -8,6 +8,8 @@ client = discord.Client()
 def get_quote():
   response = requests.get("http://zenquotes.io/api/random")
   json_data = json.loads(response.text)
+
+  #q for quote and a for author - zenquotes api
   quote = json_data[0]['q'] + " -" + json_data[0]['a']
   return(quote)
 
