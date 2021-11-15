@@ -26,9 +26,13 @@ To run this app on your pc you need to have python and pip installed. Then use p
 > $new What are you talking about, you are the best!   
 > new cheerful message added
 
-- **$del** is used to delete a cheering message.
+- **$del** is used to delete a cheering message. It takes the index of the message you want to delete as a *"parameter"*
 > $del *index of the cheerful message you want to delete*   
 > *Cheerful message* Deleted
 
+- **$list** shows all the cheerful messages available
+> $list   
+> First item    
+> Second Item   
 
 **Español**
