@@ -7,15 +7,18 @@ from replit import db
 
 client = discord.Client()
 
+#Default sad words
 sad_words = ["sad", "depressed", "unhappy", "angry", "miserable"]
+
+# Default positive messages
 starter_encouragements= [
   "Cheer up!",
   "Hang in there",
   "You are a great person / bot!"
 ]
 
-if "responding" not in db.keys():
-  db["responding"] = True
+if "active" not in db.keys():
+  db["active"] = True
 
 def get_quote():
   response = requests.get("https://zenquotes.io/api/random")
@@ -52,7 +55,7 @@ async def on_message(message):
     quote = get_quote()
     await message.channel.send(quote)
   
-  if db["responding"]:
+  if db["active"]:
     options = starter_encouragements
     if "encouragements" in db.keys():
       options.extend(db["encouragements"])
@@ -79,15 +82,15 @@ async def on_message(message):
       encouragements = db["encouragements"]
     await message.channel.send(encouragements)
 
-  if msg.startswith("$responding"):
-    value = msg.split("$responding ", 1)[1]
+  if msg.startswith("$uplift"):
+    value = msg.split("$uplift ", 1)[1]
 
     if value.lower() == "on":
-      db["responding"] = True
-      await message.channel.send("Responding is on")
+      db["active"] = True
+      await message.channel.send("Happy to see you!")
     else:
-      db["responding"] = False
-      await message.channel.send("responding if off")
+      db["active"] = False
+      await message.channel.send("See you soon!")
 
 
 client.run(os.getenv('TOKEN'))
