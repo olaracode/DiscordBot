@@ -46,12 +46,14 @@ async def on_ready():
 
 @client.event
 async def on_message(message):
+
   if message.author == client.user:
     return
 
   msg = message.content
   
   if msg.startswith('$inspire'):
+
     quote = get_quote()
     await message.channel.send(quote)
   
